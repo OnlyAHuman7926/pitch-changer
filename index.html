@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Pitch Changer</title>
+  <link href="css/new.css" rel="stylesheet" type="text/css" />
+  <link href="css/options.css" rel="stylesheet" type="text/css" />
+  <link href="effects/ripple.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <script id="MathJax-script" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+  <script src="js/helper.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="topbar">
+      <span class="topbar-left">Made By
+        <a href="https://replit.com/@OnlyAHuman/" target="_blank">OnlyAHuman</a> &
+        <a href="https://replit.com/@VertexStudioOfficial/" target="_blank">VertexStudioOfficial</a>
+      </span>
+      <span class="topbar-middle">
+        <img src="favicon.svg" style="width:20px;-webkit-user-drag: none;">&nbsp;&nbsp;Pitch Changer V2
+      </span>
+      <span class="clickable topbar-right">
+        <div id="toggle-opt" onclick="trigger();">Options</div>
+      </span>
+    </div>
+    <div class="top" style="display: flex;">
+
+      <div class="center">
+        <h1 id="filename">No File Opened</h1>
+        <div>Click to upload file</div>
+      </div>
+
+      <div class="ctrlbar waves-effect waves-light">
+        <svg width="24px" height="16px">
+          <polygon points="0,0 13.86,8 0,16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1;" />
+        </svg>
+        <svg width="24px" height="16px" class="inactive">
+          <polygon points="0,0 5,0 5,16 0,16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1;" />
+          <polygon points="11,0 16,0 16,16 11,16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1;" />
+        </svg>
+        <span>Play</span>
+        <span class="inactive">Pause</span>
+      </div>
+
+      <input type="file" id="file" accept="audio/*">
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="rate-bar">
+      <span id="rate"></span>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!--Options-->
+  <div class="cover" id="cover"></div>
+  <div class="popUp" id="popUp">
+    <img id="close" title="Close" class="btnClose" onclick="untrigger();"
+      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiNmZmYiPgogPHBhdGggZD0ibTYuMDI5IDVhMSAxIDAgMCAwLTAuNzM2MyAwLjI5MyAxIDEgMCAwIDAgMCAxLjQxNGw1LjI5MyA1LjI5My01LjI5MyA1LjI5M2ExIDEgMCAwIDAgMCAxLjQxNCAxIDEgMCAwIDAgMS40MTQgMGw1LjI5My01LjI5MyA1LjI5MyA1LjI5M2ExIDEgMCAwIDAgMS40MTQgMCAxIDEgMCAwIDAgMC0xLjQxNGwtNS4yOTMtNS4yOTMgNS4yOTMtNS4yOTNhMSAxIDAgMCAwIDAtMS40MTQgMSAxIDAgMCAwLTAuNjc3Ny0wLjI5MyAxIDEgMCAwIDAtMC43MzYzIDAuMjkzbC01LjI5MyA1LjI5My01LjI5My01LjI5M2ExIDEgMCAwIDAtMC42Nzc3LTAuMjkzeiIgLz4KPC9zdmc+Cg=="
+      alt="Close">
+    <div class="options">
+      <div class="modal-content">
+        <div class="area">
+          <div class="title">Modes</div>
+          <div class="contents">
+            <select id="mode">
+              <option value="sine">Sine Wave</option>
+              <option value="mod">Modular Wave</option>
+              <option value="rand">Random Wave</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+        </div>
+        <div class="area">
+          <div class="title">Parameters</div>
+          <div class="contents">Rate Function:&nbsp;
+            \(f(t)=\)
+            <input class="inputBox" id="rate-input">
+          </div>
+          <div class="contents">Frequency:&nbsp;
+            \(F=\)
+            <input class="inputBox" id="f">
+          </div>
+          <div class="contents">Amplitude:&nbsp;
+            \(A=\)
+            <input class="inputBox" id="a">
+          </div>
+          <div class="contents">Equilibrium Position:&nbsp;
+            \(E=\)
+            <input class="inputBox" id="e">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="js/newscript.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="effects/ripple.js"></script>
+</body>
+
+</html>
