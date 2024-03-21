@@ -4,6 +4,8 @@ let playingBeforeBlur = false;
 let editing = false;
 let context;
 let source;
+let repeat = localStorage.repeat == "true" ?? false;
+document.getElementById("repeat").checked = repeat;
 //let changeFunction = localStorage.cf || "2 ** (Math.sin(1.5 * Math.PI * t) * 12 / 12)";
 let changeFunction;
 let t = 0,
@@ -15,6 +17,16 @@ const rateInput = document.getElementById("rate-input");
 const toggleOpt = document.getElementById("toggle-opt");
 const pp = document.getElementsByClassName("ctrlbar")[0];
 const sr = 0;    // sample rate
+
+// Math object functions
+const sin = Math.sin,
+  cos = Math.cos,
+  tan = Math.tan,
+  floor = Math.floor,
+  ceil = Math.ceil,
+  abs = Math.abs,
+  sqrt = Math.sqrt,
+  PI = Math.PI;
 
 document.getElementById("close").ondragstart = function() { return false };
 
@@ -58,8 +70,12 @@ function playAudio(audio) {
     .then(audio => {
       source = context.createBufferSource();
       source.buffer = audio;
+      source.loop = repeat;
       source.connect(context.destination);
       source.start(0);
+      source.onended = () => {
+        if (!repeat) pause();
+      }
       filename.innerHTML = fileInput.files[0].name;
       context.suspend();
       pp.click();
@@ -144,3 +160,8 @@ Array.from(document.querySelectorAll(".inputBox")).forEach(e => {
 $("mode").addEventListener("change", () => {
   console.log(0); changeRateFunction()
 });
+
+document.getElementById("repeat").addEventListener("change", () => {
+  repeat = document.getElementById("repeat").checked;
+  localStorage.repeat = source.loop = repeat;
+})

@@ -61,7 +61,8 @@
 .options {
   display: flex;
   flex-direction: row;
-  margin: 0px 0px 0px 20px;
+  margin: 0px 25px;
+  flex-grow: 1;
 }
 
 .btnClose {
@@ -93,8 +94,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   touch-action: pan-y;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 .modal-content::-webkit-scrollbar{
@@ -111,13 +111,14 @@
   font-size: 18px;
   color: rgba(255,255,255,1);
   font-weight: 700;
-  margin: 20px 0px 15px 0px;
+  margin: 15px 0px;
 }
 
 .contents {
   font-size: 13px;
   color: rgb(255,255,255);
-  margin: 5px;
+  margin: 5px 0px;
+  width: 100%;
 }
 
 .formula{
@@ -150,4 +151,35 @@ select {
 input:disabled {
   color: rgba(255,255,255,.5);
   cursor: not-allowed;
+}
+
+.switch-box{
+    display: flex;
+    align-items: center;
+  }
+
+.switch{
+    display: flex;
+    align-items: center;
+    width: 36px;
+    height: 20px;
+    background-color: #444;
+    border-radius: 50px;
+    transition: all .25s;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+.dot{
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(3px);
+    transition: all .25s;
+}
+:checked ~.switch{
+    background-color: rgba(0,120,215);
+}
+:checked ~.switch .dot{
+    transform: translate(18px);
 }
